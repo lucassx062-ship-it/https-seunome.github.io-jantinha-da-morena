@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jantinha da Morena</title>
+
+<style>
+body { margin:0; font-family: Arial, sans-serif; background:#0d0d0d; color:white; }
+header { background: linear-gradient(90deg,#000,#222); padding:20px; text-align:center; }
+header h1 { margin:0; color:#ffcc00; font-size:32px; }
+header p { margin:5px 0 0; color:#ccc; }
+nav { display:flex; justify-content:center; background:#111; }
+nav button { background:none; border:none; color:white; padding:15px 25px; cursor:pointer; font-size:16px; }
+nav button:hover { background:#ffcc00; color:black; }
+.section { display:none; padding:30px; text-align:center; }
+.active { display:block; }
+.promo { background: linear-gradient(135deg,#ff0000,#ff6600); padding:25px; border-radius:15px; margin:20px auto; max-width:400px; box-shadow:0 0 15px rgba(255,0,0,0.5); }
+.btn { background:#25d366; border:none; padding:15px; margin-top:15px; cursor:pointer; font-weight:bold; border-radius:8px; }
+.card { background:#1a1a1a; padding:20px; margin:10px; border-radius:10px; display:inline-block; width:180px; box-shadow:0 0 10px rgba(0,0,0,0.5); }
+.footer { background:#000; text-align:center; padding:15px; margin-top:30px; color:#aaa; }
+.whatsapp-float { position:fixed; bottom:20px; right:20px; background:#25d366; color:white; padding:15px; border-radius:50%; font-size:20px; text-decoration:none; box-shadow:0 0 10px rgba(0,0,0,0.5); }
+.opcoes { text-align:left; max-width:400px; margin:0 auto; }
+.opcoes label { display:block; margin:8px 0; }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🔥 Jantinha da Morena 🔥</h1>
+    <p>O melhor espetinho da região</p>
+</header>
+
+<nav>
+    <button onclick="showTab('promo')">Promoção</button>
+    <button onclick="showTab('pedido')">Montar Pedido</button>
+</nav>
+
+<div id="promo" class="section active">
+    <div class="promo">
+        <h2>🔥 SUPER PROMOÇÃO 🔥</h2>
+        <p>Jantinha completa por apenas:</p>
+        <h1>R$ 15,00</h1>
+        <p><strong>Pagamento antecipado</strong></p>
+        <a href="https://wa.me/556295359636?text=Vim%20pelo%20site%20e%20quero%20a%20jantinha%20de%2015%20reais" target="_blank">
+            <button class="btn">Pedir no WhatsApp</button>
+        </a>
+    </div>
+</div>
+
+<div id="pedido" class="section">
+    <h2>🛒 Monte seu pedido</h2>
+
+    <div class="opcoes">
+        <label><input type="checkbox" value="Espetinho de Carne"> Espetinho de Carne</label>
+        <label><input type="checkbox" value="Espetinho de Frango"> Espetinho de Frango</label>
+        <label><input type="checkbox" value="Espetinho de Linguiça"> Espetinho de Linguiça</label>
+        <label><input type="checkbox" value="Salada"> Salada</label>
+        <label><input type="checkbox" value="Feijão Tropeiro"> Feijão Tropeiro</label>
+        <label><input type="checkbox" value="Mandioca"> Mandioca</label>
+        <label><input type="checkbox" value="Arroz"> Arroz</label>
+    </div>
+
+    <button class="btn" onclick="enviarPedido()">Finalizar Pedido</button>
+</div>
+
+<div class="footer">
+    <p>📍 Em frente a distribuidora sobradinho independência mansões na Avenida 70 | ⏰ Todos os dias a partir das 16h</p>
+    <p>📞 WhatsApp: (62) 9535-9636</p>
+</div>
+
+<a class="whatsapp-float" href="https://wa.me/556295359636?text=Vim%20pelo%20site" target="_blank">💬</a>
+
+<script>
+function showTab(tabId) {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(sec => sec.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+}
+
+function enviarPedido() {
+    const itens = document.querySelectorAll('input[type=checkbox]:checked');
+    if(itens.length === 0) {
+        alert('Selecione pelo menos um item!');
+        return;
+    }
+
+    let mensagem = 'Olá, vim pelo site e quero pedir:%0A';
+
+    itens.forEach(item => {
+        mensagem += '- ' + item.value + '%0A';
+    });
+
+    const link = 'https://wa.me/556295359636?text=' + mensagem;
+    window.open(link, '_blank');
+}//obrigrada
+</script>
+
+</body>
+</html>
